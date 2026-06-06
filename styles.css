@@ -1,0 +1,322 @@
+/* ══════════════════════════════════════════════════════
+   liaa — link in bio
+   styles.css
+   ══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:        #0d0d0d;
+  --card:      #141414;
+  --card2:     #1c1c1c;
+  --accent:    #ffffff;
+  --muted:     rgba(255, 255, 255, 0.4);
+  --radius:    70px;
+  --radius-sm: 22px;
+
+  /* social brand colours (used for glows) */
+  --tg-color:  #29aee6;
+  --ig-color:  #e1306c;
+  --tt-color:  #ff2d55;
+}
+
+/* ── BASE ──────────────────────────────────────────────── */
+
+body {
+  background: var(--bg);
+  font-family: 'Poppins', sans-serif;
+  color: #fff;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* ── CARD ──────────────────────────────────────────────── */
+
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 420px;
+  overflow: hidden;
+  position: relative;
+  box-shadow:
+    0 40px 120px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  animation: fadeUp .65s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── HERO ──────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  max-height: 390px;
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  /* ↑ Picture #1 — put your file in assets/ */
+}
+
+/* fade bottom edge into card */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 35%,
+    rgba(20, 20, 20, .7) 70%,
+    var(--card) 100%
+  );
+}
+
+/* ── PROFILE ───────────────────────────────────────────── */
+
+.profile {
+  padding: 0 28px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  margin-top: -18px;
+  position: relative;
+  z-index: 1;
+}
+
+.profile-name {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -.4px;
+  line-height: 1.1;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: #3b9eff;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.badge svg {
+  width: 12px;
+  height: 12px;
+}
+
+.profile-followers {
+  font-size: 12.5px;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: .15px;
+}
+
+.profile-bio {
+  font-size: 14.5px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+  margin-top: 2px;
+}
+
+/* ── MESSAGE BUTTON ────────────────────────────────────── */
+
+.btn-message {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 14px;
+  padding: 14px 34px;
+  background: #fff;
+  color: #000;
+  border-radius: 999px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  text-decoration: none;
+  text-transform: none;
+  transition: transform .18s, box-shadow .18s, background .18s;
+  box-shadow:
+    0 4px 20px rgba(255, 255, 255, 0.10),
+    0 1px 3px rgba(0, 0, 0, .3);
+}
+
+.btn-message:hover {
+  background: #f2f2f2;
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 30px rgba(255, 255, 255, 0.16),
+    0 2px 6px rgba(0, 0, 0, .25);
+}
+
+.btn-message:active {
+  transform: scale(.97);
+}
+
+/* sharp chat icon */
+.btn-icon {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+
+/* ── SOCIAL BUTTONS ────────────────────────────────────── */
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  padding: 0 28px 26px;
+}
+
+/* wrapper */
+.social-btn {
+  position: relative;
+  width: 68px;
+  height: 68px;
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform .22s cubic-bezier(.22,1,.36,1);
+  flex-shrink: 0;
+}
+
+.social-btn:hover  { transform: translateY(-4px) scale(1.06); }
+.social-btn:active { transform: scale(.95); }
+
+/* slightly brighter brand backgrounds */
+.social-btn.telegram  { background: #1e4a6e; }
+.social-btn.instagram { background: linear-gradient(145deg, #9b3cbf, #e03060, #f7841a); }
+.social-btn.tiktok    { background: #1e1e1e; border: 1px solid rgba(255,255,255,0.08); }
+
+/* real icon on top */
+.social-icon {
+  position: relative;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+/* blurred glow copy — sits behind the icon */
+.social-glow {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* each glow is a coloured circle that's blurred */
+.social-glow::before {
+  content: '';
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  filter: blur(14px);
+  opacity: .55;
+  transition: opacity .2s;
+}
+
+.social-btn:hover .social-glow::before { opacity: .8; }
+
+.telegram-glow::before   { background: var(--tg-color); }
+.instagram-glow::before  { background: var(--ig-color); }
+.tiktok-glow::before     { background: var(--tt-color); }
+
+/* ── ALBUM ─────────────────────────────────────────────── */
+
+.album {
+  padding: 0 20px 30px;
+}
+
+.album-label {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 11px;
+  padding-left: 4px;
+  letter-spacing: .25px;
+  text-transform: none;
+}
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.album-grid a {
+  display: block;
+  border-radius: 18px;
+  overflow: hidden;
+  aspect-ratio: 1;
+  transition: transform .22s cubic-bezier(.22,1,.36,1), filter .22s;
+}
+
+.album-grid a:hover  { transform: scale(1.05); filter: brightness(1.12); }
+.album-grid a:active { transform: scale(.97); }
+
+.album-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* ↑ Album media #1 / #2 / #3 — put files in assets/ */
+}
+
+/* ── MOBILE: FULLSCREEN ────────────────────────────────── */
+
+@media (max-width: 480px) {
+  body {
+    padding: 0;
+    align-items: flex-start;
+    background: var(--card);
+  }
+
+  .card {
+    border-radius: 0;
+    max-width: 100%;
+    min-height: 100dvh;
+    box-shadow: none;
+  }
+
+  .hero {
+    max-height: 48dvh;
+    aspect-ratio: unset;
+  }
+}
